@@ -1,0 +1,4 @@
+Neo3d bugs
+
+* No correct rotation
+* Blender plugin doesn't convert to OpenGL coordinates

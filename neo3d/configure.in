@@ -1,0 +1,91 @@
+dnl Init autoconf
+AC_INIT(neo3d, 0.0.10)
+AC_CANONICAL_SYSTEM
+
+dnl Configs
+SDL_VERSION=1.2.7
+
+dnl Init automake
+AM_INIT_AUTOMAKE
+
+dnl Checking for gcc and ranlib
+AC_PROG_CXX
+AC_PROG_RANLIB
+
+dnl Figure out which math library und OpenGL to use
+dnl (Thanks to SDL tests ;)
+case "$target" in
+    *-*-cygwin* | *-*-mingw32*)
+        MATHLIB=""
+        SYS_GL_LIBS="-lopengl32 -lglu32"
+        ;;
+    *-*-beos*)
+        MATHLIB=""
+        SYS_GL_LIBS="-lGL -lGLU"
+        ;;
+    *-*-darwin* )
+        MATHLIB=""
+        SYS_GL_LIBS=""
+        ;;
+    *-*-aix*)
+        if test x$ac_cv_prog_gcc = xyes; then
+            CFLAGS="-mthreads"
+        fi
+        SYS_GL_LIBS=""
+        ;;
+    *-*-mint*)
+        MATHLIB=""
+        AC_PATH_PROG(OSMESA_CONFIG, osmesa-config, no)
+        if test "x$OSMESA_CONFIG" = "xyes"; then
+            OSMESA_CFLAGS=`$OSMESA_CONFIG --cflags`
+            OSMESA_LIBS=`$OSMESA_CONFIG --libs`
+            CFLAGS="$CFLAGS $OSMESA_CFLAGS"
+            SYS_GL_LIBS="$OSMESA_LIBS"
+        else
+            SYS_GL_LIBS="-lOSMesa"
+        fi
+                ;;
+    *)
+        MATHLIB="-lm"
+        AC_PATH_X
+        AC_PATH_XTRA
+        if test x$have_x = xyes; then
+            CFLAGS="$CFLAGS $X_CFLAGS"
+            SYS_GL_LIBS="$X_LIBS -lGL -lGLU"
+        else
+            SYS_GL_LIBS="-lGL -lGLU"
+        fi
+        ;;
+esac
+AC_SUBST(MATHLIB)
+
+dnl Checking for SDL
+AM_PATH_SDL($SDL_VERSION,
+	:,
+	AC_MSG_ERROR([*** SDL version $SDL_VERSION not found!])
+)
+CXXFLAGS="$CXXFLAGS $SDL_CFLAGS"
+CFLAGS="$CFLAGS $SDL_CFLAGS"
+LIBS="$LIBS $SDL_LIBS"
+AC_SUBST(SDL_LIBS)
+
+dnl Checking for OpenGL
+AC_MSG_CHECKING(for OpenGL support)
+have_opengl=no
+AC_TRY_COMPILE([
+ #include "SDL_opengl.h"
+],[
+],[
+have_opengl=yes
+])
+AC_MSG_RESULT($have_opengl)
+if test x$have_opengl = xyes; then
+   LIBS="$SYS_GL_LIBS"
+else
+   AC_MSG_ERROR([*** Could not find OpenGL])
+fi
+AC_SUBST(GL_LIBS)
+
+
+dnl Writing Makefiles
+AC_OUTPUT([Makefile neo3d/Makefile neo3d/geo3d/Makefile])

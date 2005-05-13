@@ -1,0 +1,9 @@
+Neo3d 0.0.11:
+	New features:
+	* Added autoconf and automake
+	* Added new files: NEWS, INSTALL, README, COPYING, BUGS, AUTHORS and
+		ChangeLog
+	* neo3d will compiled as a static library in neo3d/
+	
+
+	
