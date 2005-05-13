@@ -1,5 +1,5 @@
 dnl Init autoconf
-AC_INIT(neo3d, 0.0.10)
+AC_INIT(neo3d, 0.0.11)
 AC_CANONICAL_SYSTEM
 
 dnl Configs
@@ -10,6 +10,7 @@ AM_INIT_AUTOMAKE
 
 dnl Checking for gcc and ranlib
 AC_PROG_CXX
+AC_PROG_CC
 AC_PROG_RANLIB
 
 dnl Figure out which math library und OpenGL to use
