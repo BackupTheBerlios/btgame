@@ -55,7 +55,7 @@ libneo3d_a_AR = $(AR) $(ARFLAGS)
 libneo3d_a_LIBADD =
 am_libneo3d_a_OBJECTS = camera.$(OBJEXT) n3dloader.$(OBJEXT) \
 	neo3d.$(OBJEXT) object.$(OBJEXT) trimesh.$(OBJEXT) \
-	geo3d.$(OBJEXT)
+	audio.$(OBJEXT) geo3d.$(OBJEXT)
 libneo3d_a_OBJECTS = $(am_libneo3d_a_OBJECTS)
 DEFAULT_INCLUDES = -I. -I$(srcdir)
 depcomp = $(SHELL) $(top_srcdir)/depcomp
@@ -176,6 +176,7 @@ libneo3d_a_SOURCES = camera.cxx \
 		neo3d.cxx \
 		object.cxx \
 		trimesh.cxx \
+		audio.cxx \
 		geo3d/geo3d.cxx
 
 all: all-am
@@ -225,6 +226,7 @@ mostlyclean-compile:
 distclean-compile:
 	-rm -f *.tab.c
 
+@AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/audio.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/camera.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/geo3d.Po@am__quote@
 @AMDEP_TRUE@@am__include@ @am__quote@./$(DEPDIR)/n3dloader.Po@am__quote@

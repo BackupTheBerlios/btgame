@@ -5,6 +5,7 @@ libneo3d_a_SOURCES = camera.cxx \
 		neo3d.cxx \
 		object.cxx \
 		trimesh.cxx \
+		audio.cxx \
 		geo3d/geo3d.cxx
 
 
