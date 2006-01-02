@@ -32,7 +32,7 @@ void Object::init(vertex pos, vertex front, vertex up)
     buildMatrix();
 }
 
-/**** Get functions ****/
+/**** Getter functions ****/
 vertex Object::getPos(vertex ver)
 {
     ver = (vertex) memcpy(ver, pos, sizeof(GLdouble) * 4);
@@ -58,7 +58,7 @@ vertex Object::getMatrix(matrix mat)
 }
 
 
-/**** set functions ****/
+/**** Setter functions ****/
 void Object::setPos(vertex ver)
 {
     memcpy(pos, ver, sizeof(GLdouble) * 4);
@@ -152,4 +152,9 @@ void Object::buildNegMatrix()
     mat[7] = 0.0;
     mat[11] = 0.0;
     mat[15] = 1.0;
+}
+
+void Object::multMatrix(matrix mat, matrix buffer)
+{
+  this->mat = matrixXmatrix(buffer, this->mat, mat);
 }

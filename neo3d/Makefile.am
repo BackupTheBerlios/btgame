@@ -1,8 +1,8 @@
 SUBDIRS = neo3d 
 
-bin_PROGRAMS = neo3dFreelookTest
+bin_PROGRAMS = n3dViewer
 
-neo3dFreelookTest_SOURCES = test.cxx
-neo3dFreelookTest_LDADD = neo3d/libneo3d.a
+n3dViewer_SOURCES = n3dViewer.cxx
+n3dViewer_LDADD = neo3d/libneo3d.a
 
-AM_LDFLAGS = @GL_LIBS@ @MATHLIB@ @SDL_LIBS@
+AM_LDFLAGS = @GL_LIBS@ @MATHLIB@ @SDL_LIBS@ -lSDL_image -lSDL_mixer

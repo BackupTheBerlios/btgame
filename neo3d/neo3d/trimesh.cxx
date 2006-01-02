@@ -1,7 +1,7 @@
 #include "trimesh.h"
 #include <stdlib.h>
 
-TriMesh::TriMesh() : Object()
+TriMesh::TriMesh() : DrawObject()
 {
     vertexes = (vertex *)malloc(sizeof(vertex) * TRIMESHBUFFER);
     color = (vertex *)malloc(sizeof(vertex) * TRIMESHBUFFER);
@@ -60,7 +60,7 @@ void TriMesh::addTriangle(vertex col1, vertex v1,
 void TriMesh::draw()
 {
     glPushMatrix();
-    glMultMatrixd(mat);
+    glMultMatrixd(this->mat);
     glBegin(GL_TRIANGLES);
         for (int i = 0; i < len; i++) {
             glColor3f(color[i][0], color[i][1], color[i][2]);

@@ -39,6 +39,7 @@ class Object
     void buildMatrix(); /* build the matrix using up, front and pos-vector */
     void buildNegMatrix(); /* build the negativ matrix using up, front and 
                            pos-vector (useful for camera) */
+    void multMatrix(matrix mat, matrix buffer);
 };
 
 #endif

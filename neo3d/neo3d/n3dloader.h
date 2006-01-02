@@ -1,16 +1,15 @@
 #ifndef N3DLOADER_H
 #define N3DLOADER_H
 
-#include "stdio.h"
+#include <stdio.h>
 #include "trimesh.h"
+#include "trimeshTexture.h"
+#include "drawobject.h"
 
 class N3DLoader
 {
  public:
-    static TriMesh *loadFile(char *filename);
-    static TriMesh *loadFile(FILE *file);
-
-    static TriMesh *loadTriangleObject(FILE *file);
+    static DrawObject *load(char *filename);
 };
 
 #endif // N3DLOADER_H

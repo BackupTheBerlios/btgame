@@ -3,10 +3,10 @@
 
 #define TRIMESHBUFFER 100
 
-#include "object.h"
+#include "drawobject.h"
 #include "geo3d/geo3d.h"
 
-class TriMesh : public Object
+class TriMesh : public DrawObject
 {
  private:
     vertex *vertexes;
@@ -20,7 +20,7 @@ class TriMesh : public Object
     void addTriangle(vertex col1, vertex v1,
                      vertex col2, vertex v2,
                      vertex col3, vertex v3);
-    void draw();
+    virtual void draw();
 };
 
 #endif
