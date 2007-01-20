@@ -1,4 +1,6 @@
 #include "object.h"
+#include <AL/al.h>
+#include <AL/alut.h>
 
 /**** Init functions ****/
 
@@ -30,6 +32,8 @@ void Object::init(vertex pos, vertex front, vertex up)
     this->right = newVertex();
     this->mat = newMatrix();
     buildMatrix();
+
+    hasAudio = false;
 }
 
 /**** Getter functions ****/
@@ -157,4 +161,10 @@ void Object::buildNegMatrix()
 void Object::multMatrix(matrix mat, matrix buffer)
 {
   this->mat = matrixXmatrix(buffer, this->mat, mat);
+}
+
+void Object::startAudio()
+{
+  alGenSources(1, &source);
+  
 }

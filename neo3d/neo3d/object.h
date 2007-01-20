@@ -1,6 +1,9 @@
 #ifndef OBJECT_H
 #define OBJECT_H
 
+#include <AL/al.h>
+#include <AL/alut.h>
+
 #include "neo3d.h"
 #include "string.h"
 
@@ -12,6 +15,8 @@ class Object
     vertex up; /* Vector to the top of this object (normalized) */
     vertex right; /* Vector to the side of this object (just calculated) */
     matrix mat; /* Contains everything of an object */
+    bool hasAudio; /* can object make sounds? */
+    ALuint source; /* source for OpenAL */
 
  public:
     /* Init and deinit */
@@ -40,6 +45,9 @@ class Object
     void buildNegMatrix(); /* build the negativ matrix using up, front and 
                            pos-vector (useful for camera) */
     void multMatrix(matrix mat, matrix buffer);
+
+    /* audio options */
+    void startAudio();
 };
 
 #endif

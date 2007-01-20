@@ -10,6 +10,7 @@ libneo3d_a_SOURCES = camera.cxx \
 		blobeffect.cxx \
 		audio.cxx \
 		textureStack.cxx \
+		audioStack.cxx \
 		geo3d/geo3d.cxx
 
 
